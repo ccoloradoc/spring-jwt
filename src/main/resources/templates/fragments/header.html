@@ -1,0 +1,46 @@
+<html xmlns:th="http://www.thymelef.org">
+<head></head>
+<body>
+<header th:fragment="headder">
+    <ul id="admin" class="dropdown-content">
+        <li><a href="#!/user">Users</a></li>
+        <li><a href="#!/">Timezones</a></li>
+    </ul>
+    <nav>
+        <div class="nav-wrapper">
+            <a href="#!" class="brand-logo">TimePocket</a>
+            <a href="#" data-activates="mobile-demo" class="button-collapse">
+                <i class="material-icons">menu</i>
+            </a>
+            <ul class="right hide-on-med-and-down">
+                <li><a href="#!/user">User</a></li>
+                <li><a href="#!/">Timezones</a></li>
+                <li><a class="dropdown-button" data-activates="admin">Admin<i class="material-icons right">arrow_drop_down</i></a></li>
+            </ul>
+            <ul class="side-nav" id="mobile-demo">
+                <li class="logo">
+                    <a id="logo-container" href="#" class="brand-logo">
+                        <img class="responsive-img" src="/images/logo.png" alt=""/>
+                    </a>
+                </li>
+                <li class="bold"><a href="#!/user" class="waves-effect waves-teal">User</a></li>
+                <li class="bold"><a href="#!/" class="waves-effect waves-teal">Timezones</a></li>
+                <li class="bold">
+                    <ul class="collapsible collapsible-accordion">
+                        <li>
+                            <a class="collapsible-header">Admin</a>
+                            <div class="collapsible-body">
+                                <ul>
+                                    <li><a href="#!/user">Users</a></li>
+                                    <li><a href="#!/">Timezones</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</header>
+</body>
+</html>

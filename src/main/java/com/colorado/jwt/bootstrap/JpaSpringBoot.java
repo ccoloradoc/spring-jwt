@@ -32,7 +32,7 @@ public class JpaSpringBoot implements ApplicationListener<ContextRefreshedEvent>
     @Override
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
         createRoles();
-        createUser("colorado", "pass1word", "USER");
+        createUser("colorado@toptal.com", "pass1word", "USER");
     }
 
     private void createUser(String username, String password, String roleName) {

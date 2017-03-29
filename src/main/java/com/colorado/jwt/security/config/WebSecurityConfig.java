@@ -134,7 +134,16 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         .and()
             .sessionManagement()
             .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-
+        .and()
+            .authorizeRequests()
+                .antMatchers("/**/favicon.ico") .permitAll()
+        .and().authorizeRequests()
+                .antMatchers("/webjars/**").permitAll()
+        .and().authorizeRequests()
+                .antMatchers("/static/**").permitAll()
+        .and()
+            .authorizeRequests()
+                .antMatchers("/").permitAll()
         .and()
             .authorizeRequests()
                 .antMatchers(FORM_BASED_LOGIN_ENTRY_POINT).permitAll() // Login end-point
@@ -143,9 +152,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         .and()
             .authorizeRequests()
                 .antMatchers(TOKEN_BASED_AUTH_ENTRY_POINT).authenticated() // Protected API End-points
-        .and()
-            .authorizeRequests()
-                .antMatchers("/").permitAll()
         .and()
             .addFilterBefore(buildAjaxLoginProcessingFilter(), UsernamePasswordAuthenticationFilter.class)
             .addFilterBefore(buildJwtTokenAuthenticationProcessingFilter(), UsernamePasswordAuthenticationFilter.class);

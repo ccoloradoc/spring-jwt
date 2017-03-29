@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymelef.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>TimePocket</title>
+
+    <div th:replace="fragments/imports_header :: imports"></div>
+
+</head>
+<body ng-app="app">
+    <div th:replace="fragments/header :: header"></div>
+
+    <div class="container" ng-view="">
+
+    </div>
+
+    <div th:replace="fragments/imports_footer :: imports"></div>
+</body>
+</html>
