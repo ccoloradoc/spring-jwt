@@ -1,9 +1,10 @@
 package com.colorado.jwt.services.impl;
 
 import com.colorado.jwt.models.User;
+import com.colorado.jwt.repositories.UserRepository;
+import com.colorado.jwt.security.services.SecurityService;
 import com.colorado.jwt.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.security.SecurityProperties;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -14,39 +15,50 @@ import java.util.List;
  */
 @Service
 public class UserServiceImpl implements UserService {
-    private UserService userService;
+    private UserRepository userRepository;
+
+    private SecurityService securityService;
 
     @Autowired
-    public void setUserService(UserService userService) {
-        this.userService = userService;
+    public void setUserRepository(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
+
+    @Autowired
+    public void setSecurityService(SecurityService securityService) {
+        this.securityService = securityService;
     }
 
     @Override
     public List<User> findAll() {
         List<User> userList = new ArrayList<>();
 
-        userService.findAll().forEach(userList::add);
+        userRepository.findAll().forEach(userList::add);
 
         return userList;
     }
 
     @Override
     public User findById(int id) {
-        return userService.findById(id);
+        return userRepository.findOne(id);
     }
 
     @Override
-    public User saveOrUpdate(User object) {
-        return userService.saveOrUpdate(object);
+    public User saveOrUpdate(User user) {
+        if(user.getPassword() != null) {
+            user.setEncodedPassword(securityService.encryptString(user.getPassword()));
+        }
+
+        return userRepository.save(user);
     }
 
     @Override
     public void delete(int id) {
-        userService.delete(id);
+        userRepository.delete(id);
     }
 
     @Override
     public User findByUserName(String userName) {
-        return userService.findByUserName(userName);
+        return userRepository.findByUserName(userName);
     }
 }

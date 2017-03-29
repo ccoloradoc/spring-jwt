@@ -2,8 +2,10 @@ package com.colorado.jwt;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 
 @SpringBootApplication
+@EnableConfigurationProperties
 public class SpringJwtDemoApplication {
 
 	public static void main(String[] args) {
