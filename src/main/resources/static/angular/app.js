@@ -6,3 +6,6 @@ angular.module('app',[
     'ngResource',
     'ngStorage'
     ]);
+
+
+// Clock UI: http://bashooka.com/coding/26-amazing-css-clocks/

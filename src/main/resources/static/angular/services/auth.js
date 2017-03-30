@@ -65,6 +65,18 @@ angular.module('app')
                 // remove user from local storage and clear http auth header
                 delete $localStorage.currentUser;
                 $http.defaults.headers.common['X-Authorization'] = '';
+            },
+            signup: function(user, callback) {
+                $http.post('/api/auth/signup', user)
+                    .then(function (response) {
+                        if(response.status == 200) {
+                            callback(true);
+                        } else {
+                            callback(false);
+                        }
+                    }, function(error) {
+                        callback(false);
+                    });
             }
         };
     });

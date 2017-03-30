@@ -1,9 +1,8 @@
 package com.colorado.jwt.models;
 
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.OneToMany;
-import javax.persistence.Transient;
+import org.hibernate.annotations.ManyToAny;
+
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,7 +17,12 @@ public class User extends AbstractDomain {
     private String password;
     private String encodedPassword;
 
-    @OneToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name="USER_ROLE",
+            joinColumns = @JoinColumn( name="USER_ID"),
+            inverseJoinColumns = @JoinColumn( name="ROLE_ID")
+    )
     private List<Role> roleList = new ArrayList<>();
 
     public User() {}

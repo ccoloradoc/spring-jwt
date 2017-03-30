@@ -1,4 +1,4 @@
-package com.colorado.jwt.security.auth.ajax;
+package com.colorado.jwt.security.commons.dto;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;

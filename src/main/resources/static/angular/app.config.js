@@ -43,6 +43,10 @@ angular.module('app')
         '/login': {
             templateUrl: 'angular/templates/login.html',
             controller: 'LoginController'
+        },
+        '/signup': {
+            templateUrl: 'angular/templates/signup.html',
+            controller: 'SignupController'
         }
     })
     .config(['$routeProvider', 'policies', function($routeProvider, policies) {

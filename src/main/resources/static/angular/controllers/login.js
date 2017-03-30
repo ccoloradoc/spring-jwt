@@ -20,4 +20,11 @@ angular.module('app')
                 }
             });
         }
+
+        if($location.search().signup != undefined) {
+            $scope.error = {
+                message: 'You have been registered successfully. Please login.',
+                type: 'green darken-1'
+            }
+        }
     }]);
