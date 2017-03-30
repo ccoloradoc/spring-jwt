@@ -1,39 +1,52 @@
-<div class="row">
-    <div class="col s8 offset-s2">
-        <div class="card">
-            <div class="card-image">
-                <img src="images/logo.png">
-                <a class="btn-floating btn-large halfway-fab waves-effect waves-light red" ng-click="submit()"><i class="material-icons">send</i></a>
-            </div>
-            <div class="card-content">
-                <span class="card-title">New Clock</span>
-                <form>
-                    <div class="row">
-                        <div class="input-field col s12">
-                            <input ng-model="timezone.name" id="name" type="text" class="validate">
-                            <label for="name">Name</label>
+<div class="center-container">
+    <div class="row">
+        <div class="col s8 offset-s2">
+            <div class="card">
+                <div class="card-image red lighten-2">
+                    <div class="vertical-middle">
+                        <div class="vertical-middle__child">
+                            <div class="clock">
+                                <ul class="clock__marks"></ul>
+                                <div class="clock__hands">
+                                    <div class="clock__hand clock__hand--hour"></div>
+                                    <div class="clock__hand clock__hand--minute"></div>
+                                    <div class="clock__hand clock__hand--second"></div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="input-field col s12">
-                            <input type="text" ng-model="timezone.country" id="autocomplete-country" class="autocomplete" >
-                            <label for="autocomplete-country">Country</label>
+                    <a class="btn-floating btn-large halfway-fab waves-effect waves-light red" ng-click="submit()"><i class="material-icons">send</i></a>
+                </div>
+                <div class="card-content">
+                    <span class="card-title">New Clock</span>
+                    <form>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input ng-model="timezone.name" id="name" type="text" class="validate">
+                                <label for="name">Name</label>
+                            </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="input-field col s12">
-                            <select ng-model="timezone.baseTimeZone" ng-options="timezone.zoneName for timezone in timezones">
-                            </select>
-                            <label>Timezone</label>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input type="text" ng-model="timezone.country" id="autocomplete-country" class="autocomplete" >
+                                <label for="autocomplete-country">Country</label>
+                            </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="input-field col s12">
-                            <span class="select-wrapper" ng-bind="timezone.baseTimeZone.gmtOffset | gmt" id="offset"></span>
-                            <label class="active" for="offset">Offset</label>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <select ng-model="timezone.baseTimeZone" ng-options="timezone.zoneName for timezone in timezones">
+                                </select>
+                                <label>Timezone</label>
+                            </div>
                         </div>
-                    </div>
-                </form>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <span class="select-wrapper" ng-bind="timezone.baseTimeZone.gmtOffset | gmt" id="offset"></span>
+                                <label class="active" for="offset">Offset</label>
+                            </div>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
