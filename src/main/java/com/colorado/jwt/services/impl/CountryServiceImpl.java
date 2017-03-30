@@ -32,12 +32,12 @@ public class CountryServiceImpl implements CountryService {
 
     @Override
     public Country findById(int id) {
-        return countryRepository.findById(id);
+        return countryRepository.findOne(id);
     }
 
     @Override
     public Country saveOrUpdate(Country object) {
-        return countryRepository.saveOrUpdate(object);
+        return countryRepository.save(object);
     }
 
     @Override

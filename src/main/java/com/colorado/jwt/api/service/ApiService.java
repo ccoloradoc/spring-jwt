@@ -2,7 +2,6 @@ package com.colorado.jwt.api.service;
 
 import org.springframework.web.client.RestTemplate;
 
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
@@ -25,7 +24,7 @@ public abstract class ApiService {
         this.key = key;
     }
 
-    public String getEndpoint(HashMap<String, String> params) {
+    public String getEndpoint(Map<String, String> params) {
         String url = endpoint + "&key=" + key;
 
         Set set = params.entrySet();

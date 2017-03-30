@@ -2,6 +2,7 @@ package com.colorado.jwt.security.endpoint;
 
 import com.colorado.jwt.models.Role;
 import com.colorado.jwt.models.User;
+import com.colorado.jwt.security.auth.JwtAuthenticationToken;
 import com.colorado.jwt.security.commons.dto.ErrorCode;
 import com.colorado.jwt.security.commons.dto.ErrorResponse;
 import com.colorado.jwt.security.commons.dto.LoginRequest;
@@ -63,8 +64,11 @@ public class SignUpEntryPoint {
                     ErrorResponse.of("Duplicated username", ErrorCode.EXISTENT_USER, HttpStatus.CONFLICT);
             return new ResponseEntity<Object>(errorResponse, HttpStatus.CONFLICT);
         }
-
-
-
     }
+
+    @RequestMapping(value="/api/me", method = RequestMethod.GET)
+    public UserDetails get(JwtAuthenticationToken token) {
+        return (UserDetails) token.getPrincipal();
+    }
+
 }

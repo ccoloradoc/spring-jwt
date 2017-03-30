@@ -8,7 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static org.junit.Assert.*;
 
@@ -29,7 +31,9 @@ public class TimeZoneServiceImplTest {
     @Test
     public void findTimezone() throws Exception {
         String zone = "Mon";
-        List<TimezoneDto> timezoneDtoList = timeZoneService.findTimezoneByZone(zone);
+        Map<String, String> params = new HashMap<>();
+        params.put(TimeZoneService.ZONE, "*" + zone + "*");
+        List<TimezoneDto> timezoneDtoList = timeZoneService.findTimezone(params);
 
         assert timezoneDtoList != null;
         assert timezoneDtoList.size() == 9;
@@ -42,8 +46,9 @@ public class TimeZoneServiceImplTest {
     @Test
     public void findTimezoneByCountry() throws Exception {
         String countryCode = "MX";
-        List<TimezoneDto> timezoneDtoList = timeZoneService.findTimezoneByCountry(countryCode);
-
+        Map<String, String> params = new HashMap<>();
+        params.put(TimeZoneService.COUNTRY, countryCode);
+        List<TimezoneDto> timezoneDtoList = timeZoneService.findTimezone(params);
         assert timezoneDtoList != null;
         assert timezoneDtoList.size() == 11;
 
