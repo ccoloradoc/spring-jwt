@@ -47,6 +47,16 @@ angular.module('app')
         '/signup': {
             templateUrl: 'angular/templates/signup.html',
             controller: 'SignupController'
+        },
+        '/user/:id': {
+            templateUrl: 'angular/templates/user.html',
+            controller: 'UserController',
+            permissions: ['ADMIN', 'MANAGER', 'USER']
+        },
+        '/user/:id/new': {
+            templateUrl: 'angular/templates/timezone/new.html',
+            controller: 'NewTimeZoneController',
+            permissions: ['ADMIN', 'MANAGER', 'USER']
         }
     })
     .config(['$routeProvider', 'policies', function($routeProvider, policies) {
@@ -64,6 +74,9 @@ angular.module('app')
                         });
 
                     return deferred.promise;
+                },
+                validatingRoute: function($route) {
+                    console.log($route.current.params.id);
                 }
             }
         };
@@ -85,3 +98,4 @@ angular.module('app')
 
         $routeProvider.otherwise({redirectTo: '/'});
     }]);
+
