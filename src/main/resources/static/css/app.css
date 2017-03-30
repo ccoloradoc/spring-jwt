@@ -1,3 +1,15 @@
+.logo {
+    text-align: center;
+    margin-top: 15px;
+    margin-bottom: 150px;
+}
+
+nav .side-nav .brand-logo {
+    left: 21%;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-20%);
+}
+
 .center-container {
     position: relative;
     height: 100vh;
