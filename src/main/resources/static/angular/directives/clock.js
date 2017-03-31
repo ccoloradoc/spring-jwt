@@ -25,8 +25,7 @@ angular.module('app')
                             if(clockEvt != undefined)
                                 clearInterval(clockEvt);
 
-                            clockEvt = setClockHands(second, minute, hour);
-                            //console.log(currentTime.getHours() + ":" + currentTime.getMinutes() + ":" + currentTime.getMilliseconds());
+                            clockEvt = setClockHands(newVal.id || 1, second, minute, hour);
                         }
                     });
 
@@ -36,10 +35,11 @@ angular.module('app')
                     });
 
 
-                    function setClockHands(second, minute, hour){
-                        var secondElm = $('.clock__hand--second');
-                        var minuteElm = $('.clock__hand--minute');
-                        var hourElm = $('.clock__hand--hour');
+                    function setClockHands(id, second, minute, hour){
+                        var $clock = $('#clock' + id);
+                        var secondElm = $clock.find('.clock__hand--second');
+                        var minuteElm = $clock.find('.clock__hand--minute');
+                        var hourElm = $clock.find('.clock__hand--hour');
 
                         secondElm.css('transform', 'rotate(' + second + 'deg)');
                         minuteElm.css('transform', 'rotate(' + minute + 'deg)');

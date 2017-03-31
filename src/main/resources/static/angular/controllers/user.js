@@ -7,7 +7,6 @@ angular.module('app')
 
         Resource.getTimezones($scope.id, function (timezoneList) {
            $scope.timezoneList = timezoneList;
-           console.log(timezoneList);
         });
 
     }]);
