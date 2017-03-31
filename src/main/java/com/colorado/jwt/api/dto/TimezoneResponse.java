@@ -1,5 +1,7 @@
 package com.colorado.jwt.api.dto;
 
+import com.colorado.jwt.dto.TimezoneDto;
+
 import java.util.ArrayList;
 import java.util.List;
 

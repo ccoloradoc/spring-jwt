@@ -1,6 +1,6 @@
 package com.colorado.jwt.api.service.timezonedb;
 
-import com.colorado.jwt.api.dto.TimezoneDto;
+import com.colorado.jwt.dto.TimezoneDto;
 import com.colorado.jwt.api.service.TimeZoneService;
 import org.junit.Test;
 import org.junit.runner.RunWith;

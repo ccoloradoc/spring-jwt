@@ -4,7 +4,8 @@
 angular.module('app')
     .controller('NewTimeZoneController', ['$scope', '$timeout', '$routeParams', 'Resource',
         function($scope, $timeout, $routeParams, Resource) {
-        console.log($routeParams);
+        $scope.id = $routeParams.id;
+        console.log($scope.id);
 
         $scope.timezones = [];
 
@@ -49,6 +50,9 @@ angular.module('app')
 
         $scope.submit = function() {
             console.log($scope.timezone);
+            Resource.save($scope.id, $scope.timezone, function(response) {
+                console.log(response);
+            })
         }
 
         $( document ).ready(function(){

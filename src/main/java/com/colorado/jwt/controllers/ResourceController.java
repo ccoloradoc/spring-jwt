@@ -1,17 +1,12 @@
 package com.colorado.jwt.controllers;
 
-import com.colorado.jwt.api.dto.TimezoneDto;
+import com.colorado.jwt.dto.TimezoneDto;
 import com.colorado.jwt.api.service.TimeZoneService;
 import com.colorado.jwt.models.Country;
-import com.colorado.jwt.security.auth.JwtAuthenticationToken;
 import com.colorado.jwt.services.CountryService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.List;
@@ -52,5 +47,4 @@ public class ResourceController {
 
         return timeZoneService.findTimezone(params);
     }
-
 }

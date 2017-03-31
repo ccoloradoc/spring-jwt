@@ -1,6 +1,6 @@
 package com.colorado.jwt.api.service;
 
-import com.colorado.jwt.api.dto.TimezoneDto;
+import com.colorado.jwt.dto.TimezoneDto;
 
 import java.util.List;
 import java.util.Map;

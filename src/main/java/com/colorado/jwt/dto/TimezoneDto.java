@@ -1,4 +1,4 @@
-package com.colorado.jwt.api.dto;
+package com.colorado.jwt.dto;
 
 /**
  * Created by colorado on 29/03/17.

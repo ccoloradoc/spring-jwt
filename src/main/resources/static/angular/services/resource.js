@@ -20,6 +20,12 @@ angular.module('app')
                 }).then(function(response) {
                     callback(response.data);
                 });
+            },
+            save: function (userId, timezone, callback) {
+                $http.defaults.headers.common['X-Authorization'] = 'Bearer ' + $localStorage.currentUser.token;
+                $http.post('/api/user/' + userId + '/timezone', timezone).then(function(response) {
+                    callback(response.data);
+                });
             }
         };
     }]);

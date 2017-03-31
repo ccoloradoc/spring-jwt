@@ -1,12 +1,11 @@
 package com.colorado.jwt.api.service.timezonedb;
 
-import com.colorado.jwt.api.dto.TimezoneDto;
+import com.colorado.jwt.dto.TimezoneDto;
 import com.colorado.jwt.api.dto.TimezoneResponse;
 import com.colorado.jwt.api.service.ApiService;
 import com.colorado.jwt.api.service.TimeZoneService;
 import org.springframework.http.ResponseEntity;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 

@@ -1,6 +1,6 @@
 package com.colorado.jwt.models;
 
-import org.hibernate.annotations.ManyToAny;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -24,6 +24,10 @@ public class User extends AbstractDomain {
             inverseJoinColumns = @JoinColumn( name="ROLE_ID")
     )
     private List<Role> roleList = new ArrayList<>();
+
+    @JsonIgnore
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user", orphanRemoval = true, fetch = FetchType.LAZY)
+    private List<Timezone> timezoneList = new ArrayList<>();
 
     public User() {}
 
@@ -66,5 +70,17 @@ public class User extends AbstractDomain {
 
     public void setRoleList(List<Role> roleList) {
         this.roleList = roleList;
+    }
+
+    public void addTimezone(Timezone timezone) {
+        this.timezoneList.add(timezone);
+    }
+
+    public List<Timezone> getTimezoneList() {
+        return timezoneList;
+    }
+
+    public void setTimezoneList(List<Timezone> timezoneList) {
+        this.timezoneList = timezoneList;
     }
 }
