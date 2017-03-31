@@ -53,6 +53,11 @@ angular.module('app')
             controller: 'UserController',
             permissions: ['ADMIN', 'MANAGER', 'USER']
         },
+        '/user/:id/timezone/:timezoneId/edit': {
+            templateUrl: 'angular/templates/timezone/edit.html',
+            controller: 'EditTimeZoneController',
+            permissions: ['ADMIN', 'MANAGER', 'USER']
+        },
         '/user/:id/new': {
             templateUrl: 'angular/templates/timezone/new.html',
             controller: 'NewTimeZoneController',

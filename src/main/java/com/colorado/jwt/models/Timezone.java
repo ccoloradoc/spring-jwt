@@ -13,6 +13,7 @@ import javax.persistence.OneToOne;
 public class Timezone extends AbstractDomain {
     private String name;
     private String country;
+    private String countryCode;
     private String zoneName;
     private String gmtOffset;
 
@@ -34,6 +35,14 @@ public class Timezone extends AbstractDomain {
 
     public void setCountry(String country) {
         this.country = country;
+    }
+
+    public String getCountryCode() {
+        return countryCode;
+    }
+
+    public void setCountryCode(String countryCode) {
+        this.countryCode = countryCode;
     }
 
     public String getZoneName() {

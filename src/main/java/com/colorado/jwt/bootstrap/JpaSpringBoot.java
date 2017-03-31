@@ -42,15 +42,16 @@ public class JpaSpringBoot implements ApplicationListener<ContextRefreshedEvent>
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
         createRoles();
         User user = createUser("colorado@toptal.com", "pass1word", "USER");
-        addTimezones(user, "Madrid", "Spain", "Europe/Madrid", "7200");
-        addTimezones(user, "New York", "USA", "America/New_York", "-14400");
+        addTimezones(user, "Madrid", "Spain", "ES","Europe/Madrid", "7200");
+        addTimezones(user, "New York", "USA", "US","America/New_York", "-14400");
     }
 
-    private void addTimezones(User user, String name, String country, String zone, String offset) {
+    private void addTimezones(User user, String name, String country, String countryCode, String zone, String offset) {
         Timezone timezone = new Timezone();
         timezone.setUser(user);
         timezone.setName(name);
         timezone.setCountry(country);
+        timezone.setCountryCode(countryCode);
         timezone.setZoneName(zone);
         timezone.setGmtOffset(offset);
 

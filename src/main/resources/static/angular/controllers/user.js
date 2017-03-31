@@ -2,11 +2,26 @@
  * Created by colorado on 30/03/17.
  */
 angular.module('app')
-    .controller('UserController', ['$scope', '$routeParams', 'Resource', function($scope, $routeParams, Resource) {
+    .controller('UserController', ['$scope', '$routeParams', '$location', 'Resource',
+        function($scope, $routeParams, $location, Resource) {
         $scope.id = $routeParams.id || 1; //Replace with user id
 
-        Resource.getTimezones($scope.id, function (timezoneList) {
-           $scope.timezoneList = timezoneList;
-        });
+        $scope.loadTimezones = function() {
+            Resource.getTimezones($scope.id, function (timezoneList) {
+                $scope.timezoneList = timezoneList;
+            });
+        };
+
+        $scope.delete = function(timezone) {
+            Resource.deleteTimezone($scope.id, timezone, function() {
+                $scope.loadTimezones();
+            });
+        };
+
+        $scope.edit = function(timezone) {
+            $location.path('/user/' + $scope.id + '/timezone/' + timezone.id + '/edit');
+        };
+
+        $scope.loadTimezones();
 
     }]);

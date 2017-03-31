@@ -15,6 +15,7 @@ public class TimeZoneRequestToTimezoneConverter implements Converter<TimeZoneReq
         Timezone timezone = new Timezone();
         timezone.setId(timeZoneRequest.getId());
         timezone.setCountry(timeZoneRequest.getCountry());
+        timezone.setCountryCode(timeZoneRequest.getBaseTimeZone().getCountryCode());
         timezone.setName(timeZoneRequest.getName());
         timezone.setZoneName(timeZoneRequest.getBaseTimeZone().getZoneName());
         timezone.setGmtOffset(timeZoneRequest.getBaseTimeZone().getGmtOffset());

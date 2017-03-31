@@ -8,6 +8,7 @@ import com.colorado.jwt.security.auth.JwtAuthenticationToken;
 import com.colorado.jwt.security.commons.AuthUtils;
 import com.colorado.jwt.services.TimezoneService;
 import com.colorado.jwt.services.UserService;
+import org.apache.catalina.loader.ResourceEntry;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -58,6 +59,21 @@ public class TimeZoneController {
         }
     }
 
+    @RequestMapping("/api/user/{userId}/timezone/{timezoneId}")
+    public ResponseEntity<?> findTimezone(@PathVariable Integer userId, @PathVariable Integer timezoneId,
+                                              JwtAuthenticationToken token) {
+        UserDetails userDetails = (UserDetails) token.getPrincipal();
+        User client = userService.findByUserName(userDetails.getUsername());
+
+        //If requesting own records OR it is ADMIN
+        if((client != null && client.getId() == userId) || AuthUtils.hasAuthority(userDetails, "ADMIN")) {
+            Timezone timezone = timezoneService.findById(timezoneId);
+            return new ResponseEntity<>(timezone, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(null, HttpStatus.UNAUTHORIZED);
+        }
+    }
+
     @RequestMapping(value = "/api/user/{userId}/timezone", method = RequestMethod.POST)
     public ResponseEntity<?> saveTimeZone(@PathVariable Integer userId, @RequestBody TimeZoneRequest timeZoneRequest, JwtAuthenticationToken token) {
         UserDetails userDetails = (UserDetails) token.getPrincipal();
@@ -75,6 +91,47 @@ public class TimeZoneController {
             timezone.setUser(otherUser);
             Timezone savedTimezone = timezoneService.saveOrUpdate(timezone);
             return new ResponseEntity<>(savedTimezone, HttpStatus.OK);
+        } else {
+            //Saving not granted
+            return new ResponseEntity<>(null, HttpStatus.UNAUTHORIZED);
+        }
+    }
+
+    @RequestMapping(value = "/api/user/{userId}/timezone/{timezoneId}", method = RequestMethod.PUT)
+    public ResponseEntity<?> editTimeZone(@PathVariable Integer userId, @PathVariable Integer timezoneId, @RequestBody Timezone timezone, JwtAuthenticationToken token) {
+        UserDetails userDetails = (UserDetails) token.getPrincipal();
+        User client = userService.findByUserName(userDetails.getUsername());
+
+        // If requesting saving for same user
+        if(client != null && client.getId() == userId) {
+            timezone.setUser(client);
+            Timezone savedTimezone = timezoneService.saveOrUpdate(timezone);
+            return new ResponseEntity<>(savedTimezone, HttpStatus.OK);
+        } else if(AuthUtils.hasAuthority(userDetails, "ADMIN")) {
+            //Requesting saving for other user
+            User otherUser = userService.findById(userId);
+            timezone.setUser(otherUser);
+            Timezone savedTimezone = timezoneService.saveOrUpdate(timezone);
+            return new ResponseEntity<>(savedTimezone, HttpStatus.OK);
+        } else {
+            //Saving not granted
+            return new ResponseEntity<>(null, HttpStatus.UNAUTHORIZED);
+        }
+    }
+
+    @RequestMapping(value = "/api/user/{userId}/timezone/{timezoneId}", method = RequestMethod.DELETE)
+    public ResponseEntity<?> delete(@PathVariable Integer userId, @PathVariable Integer timezoneId, JwtAuthenticationToken token) {
+        UserDetails userDetails = (UserDetails) token.getPrincipal();
+        User client = userService.findByUserName(userDetails.getUsername());
+
+        // If requesting deleting for same user
+        if(client != null && client.getId() == userId) {
+            timezoneService.delete(timezoneId);
+            return new ResponseEntity<>(null, HttpStatus.OK);
+        } else if(AuthUtils.hasAuthority(userDetails, "ADMIN")) {
+            //Requesting saving for other user
+            timezoneService.delete(timezoneId);
+            return new ResponseEntity<>(null, HttpStatus.OK);
         } else {
             //Saving not granted
             return new ResponseEntity<>(null, HttpStatus.UNAUTHORIZED);
