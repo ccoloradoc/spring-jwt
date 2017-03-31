@@ -1,8 +1,10 @@
 package com.colorado.jwt.bootstrap;
 
 import com.colorado.jwt.models.Role;
+import com.colorado.jwt.models.Timezone;
 import com.colorado.jwt.models.User;
 import com.colorado.jwt.services.RoleService;
+import com.colorado.jwt.services.TimezoneService;
 import com.colorado.jwt.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
@@ -19,6 +21,8 @@ public class JpaSpringBoot implements ApplicationListener<ContextRefreshedEvent>
 
     private RoleService roleService;
 
+    private TimezoneService timezoneService;
+
     @Autowired
     public void setUserService(UserService userService) {
         this.userService = userService;
@@ -29,17 +33,35 @@ public class JpaSpringBoot implements ApplicationListener<ContextRefreshedEvent>
         this.roleService = roleService;
     }
 
+    @Autowired
+    public void setTimezoneService(TimezoneService timezoneService) {
+        this.timezoneService = timezoneService;
+    }
+
     @Override
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
         createRoles();
-        createUser("colorado@toptal.com", "pass1word", "USER");
+        User user = createUser("colorado@toptal.com", "pass1word", "USER");
+        addTimezones(user, "Madrid", "Spain", "Europe/Madrid", "7200");
+        addTimezones(user, "New York", "USA", "America/New_York", "-14400");
     }
 
-    private void createUser(String username, String password, String roleName) {
+    private void addTimezones(User user, String name, String country, String zone, String offset) {
+        Timezone timezone = new Timezone();
+        timezone.setUser(user);
+        timezone.setName(name);
+        timezone.setCountry(country);
+        timezone.setZoneName(zone);
+        timezone.setGmtOffset(offset);
+
+        timezoneService.saveOrUpdate(timezone);
+    }
+
+    private User createUser(String username, String password, String roleName) {
         Role role = roleService.findByName(roleName);
         User user = new User(username, password);
         user.addRole(role);
-        userService.saveOrUpdate(user);
+        return userService.saveOrUpdate(user);
     }
 
     private void createRoles() {
