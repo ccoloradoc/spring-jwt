@@ -1,10 +1,10 @@
 <div class="row">
-    <div class="col s6" ng-repeat="timezone in timezoneList">
+    <div class="col s12  m6 l4" ng-repeat="timezone in timezoneList">
         <div ng-attr-id="{{ 'clock' + timezone.id }}" class="card">
             <div class="card-image red lighten-2">
                 <clock timezone="timezone"></clock>
                 <div class="fixed-action-btn horizontal">
-                    <a class="btn-floating btn-large red">
+                    <a class="btn-floating btn-large indigo lighten-2">
                         <i class="large material-icons">menu</i>
                     </a>
                     <ul>
@@ -29,3 +29,5 @@
         </div>
     </div>
 </div>
+
+<a ng-click="add()" class="btn-floating btn-master btn-large waves-effect waves-light red"><i class="material-icons">add</i></a>

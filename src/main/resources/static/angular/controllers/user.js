@@ -22,6 +22,10 @@ angular.module('app')
             $location.path('/user/' + $scope.id + '/timezone/' + timezone.id + '/edit');
         };
 
+        $scope.add = function() {
+            $location.path('/user/' + $scope.id + '/new');
+        };
+
         $scope.loadTimezones();
 
     }]);
