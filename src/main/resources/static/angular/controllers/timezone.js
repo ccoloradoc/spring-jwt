@@ -22,7 +22,7 @@ angular.module('app')
             angular.forEach(countries, function(item) {
                 $scope.country[item.countryName] = item.countryCode;
                 $scope.countryDropdown[item.countryName] =
-                    'https://www.translatorscafe.com/cafe/images/flags/' + item.countryCode + '.gif';
+                    '/images/flags/' + item.countryCode + '.gif';
             });
 
             $('input#autocomplete-country').autocomplete({

@@ -42,3 +42,8 @@ nav .side-nav .brand-logo {
     webkit-transform: translateY(50%);
     transform: translateY(50%);
 }
+
+.autocomplete-content li img {
+    height: 20px!important;
+    width: 20px!important;
+}
