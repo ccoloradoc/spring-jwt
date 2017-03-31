@@ -48,7 +48,7 @@ angular.module('app')
             templateUrl: 'angular/templates/signup.html',
             controller: 'SignupController'
         },
-        '/user/:id': {
+        '/user/:id?': {
             templateUrl: 'angular/templates/user.html',
             controller: 'UserController',
             permissions: ['ADMIN', 'MANAGER', 'USER']
@@ -76,7 +76,7 @@ angular.module('app')
                     return deferred.promise;
                 },
                 validatingRoute: function($route) {
-                    console.log($route.current.params.id);
+                    console.log(path + ' - ' + $route.current.params.id);
                 }
             }
         };

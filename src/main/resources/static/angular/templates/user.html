@@ -1,25 +1,30 @@
 <div class="row">
-    <div class="col sm6">
+    <div class="col s6" ng-repeat="timezone in timezoneList">
         <div class="card">
-            <div class="card-image">
-                <img src="images/logo.png">
-                <a class="btn-floating btn-large halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
+            <div class="card-image red lighten-2">
+                <clock timezone="timezone"></clock>
+                <div class="fixed-action-btn horizontal">
+                    <a class="btn-floating btn-large red">
+                        <i class="large material-icons">menu</i>
+                    </a>
+                    <ul>
+                        <li><a class="btn-floating green"><i class="material-icons">mode_edit</i></a></li>
+                        <li><a class="btn-floating red"><i class="material-icons">delete</i></a></li>
+                    </ul>
+                </div>
             </div>
             <div class="card-content">
-                <span class="card-title">Card Title</span>
-                <p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p>
-            </div>
-        </div>
-    </div>
-    <div class="col sm6">
-        <div class="card">
-            <div class="card-image">
-                <img src="images/logo.png">
-                <a class="btn-floating btn-large halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
-            </div>
-            <div class="card-content">
-                <span class="card-title">Card Title</span>
-                <p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p>
+                <span class="card-title" ng-bind="timezone.name"></span>
+                <table class="stripped">
+                    <tr>
+                        <td>Country</td>
+                        <td ng-bind="timezone.country"></td>
+                    </tr>
+                    <tr>
+                        <td>Zone Name</td>
+                        <td ng-bind="timezone.zoneName"></td>
+                    </tr>
+                </table>
             </div>
         </div>
     </div>

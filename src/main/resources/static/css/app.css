@@ -33,3 +33,12 @@ nav .side-nav .brand-logo {
 .card .card-image {
     min-height: 225px;
 }
+
+.fixed-action-btn {
+    float: right !important;
+    position: absolute !important;
+    right: 24px !important;
+    bottom: 0px !important;
+    webkit-transform: translateY(50%);
+    transform: translateY(50%);
+}

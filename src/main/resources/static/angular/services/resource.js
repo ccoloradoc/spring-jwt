@@ -26,6 +26,12 @@ angular.module('app')
                 $http.post('/api/user/' + userId + '/timezone', timezone).then(function(response) {
                     callback(response.data);
                 });
+            },
+            getTimezones: function(userId, callback) {
+                $http.defaults.headers.common['X-Authorization'] = 'Bearer ' + $localStorage.currentUser.token;
+                $http.get('/api/user/' + userId + '/timezone').then(function(response) {
+                    callback(response.data);
+                });
             }
         };
     }]);

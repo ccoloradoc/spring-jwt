@@ -2,8 +2,8 @@
  * Created by colorado on 30/03/17.
  */
 angular.module('app')
-    .controller('NewTimeZoneController', ['$scope', '$timeout', '$routeParams', 'Resource',
-        function($scope, $timeout, $routeParams, Resource) {
+    .controller('NewTimeZoneController', ['$scope', '$timeout', '$location', '$routeParams', 'Resource',
+        function($scope, $timeout, $location, $routeParams, Resource) {
         $scope.id = $routeParams.id;
         console.log($scope.id);
 
@@ -51,7 +51,7 @@ angular.module('app')
         $scope.submit = function() {
             console.log($scope.timezone);
             Resource.save($scope.id, $scope.timezone, function(response) {
-                console.log(response);
+                $location.path('/user/' + $scope.id);
             })
         }
 

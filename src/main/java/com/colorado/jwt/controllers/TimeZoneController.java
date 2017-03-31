@@ -43,7 +43,7 @@ public class TimeZoneController {
         this.timeZoneRequestToTimezoneConverter = timeZoneRequestToTimezoneConverter;
     }
 
-    @RequestMapping("/api/user/:userId/timezone")
+    @RequestMapping("/api/user/{userId}/timezone")
     public ResponseEntity<?> findAllTimezones(@PathVariable Integer userId, JwtAuthenticationToken token) {
         List<Timezone> timezoneList = new ArrayList<>();
         UserDetails userDetails = (UserDetails) token.getPrincipal();
