@@ -5,6 +5,32 @@ angular.module('app')
     .factory('Auth', function($http, $q, $localStorage, policies){
         $http.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
         return {
+            isAuthenticated: function () {
+                return $localStorage.currentUser != undefined;
+            },
+            hasAnyRole: function(roles) {
+                if($localStorage.currentUser != undefined) {
+                    for(var i in $localStorage.currentUser.authorities) {
+                        var authority = $localStorage.currentUser.authorities[i];
+                        for(var j in roles) {
+                            var role = roles[j];
+                            if(authority.authority == role) {
+                                return true;
+                            }
+                        }
+                    }
+                }
+                return false;
+            },
+            hasRole: function(targetRole) {
+                if($localStorage.currentUser != undefined) {
+                    angular.forEach($localStorage.currentUser.authorities, function(role) {
+                        if(role.authority == targetRole)
+                            return true;
+                    });
+                }
+                return false;
+            },
             hasUserPermissionForView: function(view) {
                 console.log('Validating: ' + view);
 

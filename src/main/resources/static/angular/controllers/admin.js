@@ -33,7 +33,6 @@ angular.module('app')
         };
 
         $scope.save = function () {
-            console.log($scope.user);
             if($scope.user.id != undefined) {
                 Admin.User.update($scope.user, function() {
                     $route.reload();

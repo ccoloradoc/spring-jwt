@@ -26,7 +26,7 @@ public class User extends AbstractDomain {
     private List<Role> roleList = new ArrayList<>();
 
     @JsonIgnore
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user", orphanRemoval = true, fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.MERGE, mappedBy = "user", orphanRemoval = true, fetch = FetchType.LAZY)
     private List<Timezone> timezoneList = new ArrayList<>();
 
     public User() {}
