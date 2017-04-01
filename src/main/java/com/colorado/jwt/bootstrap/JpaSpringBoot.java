@@ -41,7 +41,7 @@ public class JpaSpringBoot implements ApplicationListener<ContextRefreshedEvent>
     @Override
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
         createRoles();
-        User user = createUser("colorado@toptal.com", "pass1word", "USER");
+        User user = createUser("colorado@toptal.com", "pass1word", "MANAGER");
         addTimezones(user, "Madrid", "Spain", "ES","Europe/Madrid", "7200");
         addTimezones(user, "New York", "USA", "US","America/New_York", "-14400");
     }

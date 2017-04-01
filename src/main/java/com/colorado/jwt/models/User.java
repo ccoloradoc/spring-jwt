@@ -13,8 +13,9 @@ import java.util.List;
 public class User extends AbstractDomain {
 
     private String userName;
-    @Transient
+    @JsonIgnore
     private String password;
+    @JsonIgnore
     private String encodedPassword;
 
     @ManyToMany(fetch = FetchType.EAGER)

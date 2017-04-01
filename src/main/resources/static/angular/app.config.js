@@ -48,6 +48,10 @@ angular.module('app')
             templateUrl: 'angular/templates/signup.html',
             controller: 'SignupController'
         },
+        '/admin': {
+            templateUrl: 'angular/templates/admin.html',
+            controller: 'AdminController'
+        },
         '/user/:id?': {
             templateUrl: 'angular/templates/user.html',
             controller: 'UserController',
