@@ -63,7 +63,7 @@ angular.module('app')
                 $scope.timezone.zoneName = $scope.timezone.baseTimeZone.zoneName;
                 $scope.timezone.gmtOffset = $scope.timezone.baseTimeZone.gmtOffset;
                 Resource.update($scope.id, $scope.timezone, function(response) {
-                    $location.path('/user/' + $scope.id);
+                    $location.path('/' + $scope.id);
                 })
             }
 

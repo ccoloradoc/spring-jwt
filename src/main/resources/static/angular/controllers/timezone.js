@@ -50,7 +50,7 @@ angular.module('app')
 
         $scope.submit = function() {
             Resource.save($scope.id, $scope.timezone, function(response) {
-                $location.path('/user/' + $scope.id);
+                $location.path('/' + $scope.id);
             })
         }
 

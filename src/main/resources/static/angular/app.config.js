@@ -35,11 +35,6 @@ angular.module('app')
         });
     }])
     .constant('policies',{
-        '/': {
-            templateUrl: 'angular/templates/dashboard.html',
-            controller: 'DashboardController',
-            permissions: ['ADMIN', 'MANAGER', 'USER']
-        },
         '/login': {
             templateUrl: 'angular/templates/login.html',
             controller: 'LoginController'
@@ -50,19 +45,20 @@ angular.module('app')
         },
         '/admin': {
             templateUrl: 'angular/templates/admin.html',
-            controller: 'AdminController'
+            controller: 'AdminController',
+            permissions: ['ADMIN', 'MANAGER']
         },
-        '/user/:id?': {
+        '/:id?': {
             templateUrl: 'angular/templates/user.html',
             controller: 'UserController',
             permissions: ['ADMIN', 'MANAGER', 'USER']
         },
-        '/user/:id/timezone/:timezoneId/edit': {
+        '/:id/timezone/:timezoneId/edit': {
             templateUrl: 'angular/templates/timezone/edit.html',
             controller: 'EditTimeZoneController',
             permissions: ['ADMIN', 'MANAGER', 'USER']
         },
-        '/user/:id/new': {
+        '/:id/new': {
             templateUrl: 'angular/templates/timezone/new.html',
             controller: 'NewTimeZoneController',
             permissions: ['ADMIN', 'MANAGER', 'USER']

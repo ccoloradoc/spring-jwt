@@ -19,11 +19,11 @@ angular.module('app')
         };
 
         $scope.edit = function(timezone) {
-            $location.path('/user/' + $scope.id + '/timezone/' + timezone.id + '/edit');
+            $location.path('/' + $scope.id + '/timezone/' + timezone.id + '/edit');
         };
 
         $scope.add = function() {
-            $location.path('/user/' + $scope.id + '/new');
+            $location.path('/' + $scope.id + '/new');
         };
 
         $scope.loadTimezones();
