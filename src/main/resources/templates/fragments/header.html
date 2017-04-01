@@ -2,44 +2,48 @@
 <head></head>
 <body>
 <header th:fragment="headder">
-    <ul id="admin" class="dropdown-content">
-        <li><a href="#!/user">Users</a></li>
-        <li><a href="#!/">Timezones</a></li>
-    </ul>
+    <!--<ul id="admin" class="dropdown-content">-->
+        <!--<li><a href="#!/user">Home</a></li>-->
+        <!--<li><a href="#!/">Admin</a></li>-->
+    <!--</ul>-->
     <nav>
         <div class="nav-wrapper">
-            <a href="#!" class="brand-logo">
+            <a href="#!/" class="brand-logo">
                 <img src="/images/logo_linear_trans.png" alt=""/>
             </a>
             <a href="#" data-activates="mobile-demo" class="button-collapse">
                 <i class="material-icons">menu</i>
             </a>
             <ul class="right hide-on-med-and-down">
-                <li><a href="#!/user">User</a></li>
-                <li><a href="#!/">Timezones</a></li>
-                <li><a class="dropdown-button" data-activates="admin">Admin<i class="material-icons right">arrow_drop_down</i></a></li>
+                <li><a href="#!/"><i class="material-icons small">account_circle</i></a></li>
+                <li><a href="#!/admin"><i class="material-icons small">settings</i></a></li>
+                <li><a href="#!/login"><i class="material-icons small">input</i></a></li>
+                <li><a href=""><i class="material-icons small">input</i></a></li>
+                <!--<li><a class="dropdown-button" data-activates="admin">Admin<i class="material-icons right">arrow_drop_down</i></a></li>-->
             </ul>
             <ul class="side-nav" id="mobile-demo">
                 <li class="logo">
-                    <a id="logo-container" href="#" class="brand-logo">
+                    <a id="logo-container" href="#!/" class="brand-logo">
                         <img class="responsive-img" src="/images/logo.png" alt=""/>
                     </a>
                 </li>
-                <li class="bold"><a href="#!/user" class="waves-effect waves-teal">User</a></li>
-                <li class="bold"><a href="#!/" class="waves-effect waves-teal">Timezones</a></li>
-                <li class="bold">
-                    <ul class="collapsible collapsible-accordion">
-                        <li>
-                            <a class="collapsible-header">Admin</a>
-                            <div class="collapsible-body">
-                                <ul>
-                                    <li><a href="#!/user">Users</a></li>
-                                    <li><a href="#!/">Timezones</a></li>
-                                </ul>
-                            </div>
-                        </li>
-                    </ul>
-                </li>
+                <li class="bold"><a href="#!/" class="waves-effect waves-teal"><i class="material-icons small">account_circle</i>Me</a></li>
+                <li class="bold"><a href="#!/admin" class="waves-effect waves-teal"><i class="material-icons small">settings</i>Admin</a></li>
+                <li class="bold"><a href="#!/login" class="waves-effect waves-teal"><i class="material-icons small">input</i>Login</a></li>
+                <li class="bold"><a href="" class="waves-effect waves-teal" ng-click="logout()"><i class="material-icons small">input</i>Logout</a></li>
+                <!--<li class="bold">-->
+                    <!--<ul class="collapsible collapsible-accordion">-->
+                        <!--<li>-->
+                            <!--<a class="collapsible-header">Admin</a>-->
+                            <!--<div class="collapsible-body">-->
+                                <!--<ul>-->
+                                    <!--<li><a href="#!/user">Users</a></li>-->
+                                    <!--<li><a href="#!/">Timezones</a></li>-->
+                                <!--</ul>-->
+                            <!--</div>-->
+                        <!--</li>-->
+                    <!--</ul>-->
+                <!--</li>-->
             </ul>
         </div>
     </nav>
