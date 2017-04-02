@@ -29,6 +29,7 @@
                         </td>
                         <td ng-bind="user.createdDate | date"></td>
                         <td>
+                            <a class="btn-floating pink lighten-3" ng-href="#!/{{user.id}}"><i class="material-icons">face</i></a>
                             <a class="btn-floating green activator" ng-click="edit(user)"><i class="material-icons">mode_edit</i></a>
                             <a class="btn-floating red" ng-click="delete(user)"><i class="material-icons">delete</i></a>
                         </td>
