@@ -20,6 +20,7 @@ public class UserToUserDetailsConverter implements Converter<User, UserDetails> 
     @Override
     public UserDetails convert(User user) {
         UserDetailsImpl userDetails = new UserDetailsImpl();
+        userDetails.setId(user.getId());
         userDetails.setUsername(user.getUserName());
         userDetails.setPassword(user.getEncodedPassword());
         userDetails.setEnabled(true);

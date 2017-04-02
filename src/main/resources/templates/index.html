@@ -12,6 +12,16 @@
 <body ng-app="app">
     <div th:replace="fragments/header :: header"></div>
 
+    <div class="container">
+        <div class="row">
+            <div class="col s8 offset-s2">
+                <div ng-if="errorMessage.enabled" class="card-panel deep-orange darken-1">
+                    <p class="white-text" ng-bind="errorMessage.message"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="container" ng-view="">
 
     </div>

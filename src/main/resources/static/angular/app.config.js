@@ -48,20 +48,28 @@ angular.module('app')
             controller: 'AdminController',
             permissions: ['ADMIN', 'MANAGER']
         },
-        '/:id?': {
+        '/': {
             templateUrl: 'angular/templates/user.html',
             controller: 'UserController',
             permissions: ['ADMIN', 'MANAGER', 'USER']
         },
+        '/:id': {
+            templateUrl: 'angular/templates/user.html',
+            controller: 'UserController',
+            permissions: ['ADMIN', 'MANAGER', 'USER'],
+            restricted: true
+        },
         '/:id/timezone/:timezoneId/edit': {
             templateUrl: 'angular/templates/timezone/edit.html',
             controller: 'EditTimeZoneController',
-            permissions: ['ADMIN', 'MANAGER', 'USER']
+            permissions: ['ADMIN', 'MANAGER', 'USER'],
+            restricted: true
         },
         '/:id/new': {
             templateUrl: 'angular/templates/timezone/new.html',
             controller: 'NewTimeZoneController',
-            permissions: ['ADMIN', 'MANAGER', 'USER']
+            permissions: ['ADMIN', 'MANAGER', 'USER'],
+            restricted: true
         }
     })
     .config(['$routeProvider', 'policies', function($routeProvider, policies) {
@@ -80,8 +88,30 @@ angular.module('app')
 
                     return deferred.promise;
                 },
-                validatingRoute: function($route) {
-                    console.log(path + ' - ' + $route.current.params.id);
+                validatingRoute: function(Auth, $q, $route, $rootScope) {
+                    var deferred = $q.defer();
+
+                    if($rootScope.errorMessage != undefined) {
+                        $rootScope.errorMessage.displayed ++;
+                        if($rootScope.errorMessage.displayed > 1)
+                            $rootScope.errorMessage.enabled = false;
+                    }
+
+
+                    if(Auth.canAccessResource(path, $route.current.params)) {
+                        console.log('Authorized: [' + path + ']');
+                        deferred.resolve();
+                    } else {
+                        console.log('NOT Authorized [' + path + ']');
+                        $rootScope.errorMessage = {
+                            message: 'You do not have the access level to see this resource.',
+                            enabled: true,
+                            displayed: 0
+                        };
+                        deferred.reject();
+                    }
+
+                    return deferred.promise;
                 }
             }
         };

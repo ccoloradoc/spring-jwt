@@ -11,11 +11,20 @@ import java.util.Collection;
  * Created by colorado on 28/03/17.
  */
 public class UserDetailsImpl implements UserDetails {
+    private Integer id;
     private Collection<SimpleGrantedAuthority> authorities;
     private String username;
     @JsonIgnore
     private String password;
     private Boolean enabled;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public void setAuthorities(Collection<SimpleGrantedAuthority> authorities) {
         this.authorities = authorities;

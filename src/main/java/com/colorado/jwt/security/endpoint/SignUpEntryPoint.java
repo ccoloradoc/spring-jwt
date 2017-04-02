@@ -6,6 +6,7 @@ import com.colorado.jwt.security.auth.JwtAuthenticationToken;
 import com.colorado.jwt.security.commons.dto.ErrorCode;
 import com.colorado.jwt.security.commons.dto.ErrorResponse;
 import com.colorado.jwt.security.commons.dto.LoginRequest;
+import com.colorado.jwt.security.commons.dto.UserDetailsImpl;
 import com.colorado.jwt.security.converters.LoginRequestToUserConverter;
 import com.colorado.jwt.security.converters.UserToUserDetailsConverter;
 import com.colorado.jwt.services.RoleService;
@@ -67,8 +68,8 @@ public class SignUpEntryPoint {
     }
 
     @RequestMapping(value="/api/me", method = RequestMethod.GET)
-    public UserDetails get(JwtAuthenticationToken token) {
-        return (UserDetails) token.getPrincipal();
+    public UserDetailsImpl get(JwtAuthenticationToken token) {
+        return (UserDetailsImpl) token.getPrincipal();
     }
 
 }

@@ -2,9 +2,9 @@
  * Created by colorado on 30/03/17.
  */
 angular.module('app')
-    .controller('UserController', ['$scope', '$routeParams', '$location', 'Resource',
-        function($scope, $routeParams, $location, Resource) {
-        $scope.id = $routeParams.id || 1; //Replace with user id
+    .controller('UserController', ['$scope', '$routeParams', '$location', 'Auth', 'Resource',
+        function($scope, $routeParams, $location, Auth, Resource) {
+        $scope.id = $routeParams.id || Auth.currentUser().id;
 
         $scope.loadTimezones = function() {
             Resource.getTimezones($scope.id, function (timezoneList) {

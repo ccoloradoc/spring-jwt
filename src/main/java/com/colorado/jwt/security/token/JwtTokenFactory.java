@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
+import com.colorado.jwt.security.commons.dto.UserDetailsImpl;
 import com.colorado.jwt.security.token.impl.AccessJwtToken;
 import org.apache.commons.lang3.StringUtils;
 import org.joda.time.DateTime;
@@ -34,6 +35,7 @@ public class JwtTokenFactory {
             throw new IllegalArgumentException("User doesn't have any privileges");
 
         Claims claims = Jwts.claims().setSubject(userContext.getUsername());
+        claims.put("id", ((UserDetailsImpl) userContext).getId());
         claims.put("scopes", userContext.getAuthorities().stream().map(s -> s.toString()).collect(Collectors.toList()));
 
         DateTime currentTime = new DateTime();
@@ -57,6 +59,7 @@ public class JwtTokenFactory {
         DateTime currentTime = new DateTime();
 
         Claims claims = Jwts.claims().setSubject(userDetails.getUsername());
+        claims.put("id", ((UserDetailsImpl) userDetails).getId());
         claims.put("scopes", Arrays.asList(Scopes.REFRESH_TOKEN.authority()));
         
         String token = Jwts.builder()
