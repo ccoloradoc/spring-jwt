@@ -2,7 +2,7 @@
  * Created by colorado on 29/03/17.
  */
 angular.module('app')
-    .controller('DashboardController', ['$scope', '$location', 'Auth', function($scope, $location, Auth) {
+    .controller('DashboardController', ['$scope', '$rootScope', '$location', 'Auth', function($scope, $rootScope, $location, Auth) {
         $scope.isAuthenticated = function() {
             return Auth.isAuthenticated();
         };
@@ -22,5 +22,11 @@ angular.module('app')
         $scope.logout = function() {
             Auth.logout();
             $location.path('/login');
+        };
+
+        $scope.closeMsg = function() {
+            $rootScope.errorMessage = {
+                enabled: false
+            };
         };
     }]);

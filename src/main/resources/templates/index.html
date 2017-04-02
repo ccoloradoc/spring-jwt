@@ -9,14 +9,15 @@
     <div th:replace="fragments/imports_header :: imports"></div>
 
 </head>
-<body ng-app="app">
+<body ng-app="app" ng-controller="DashboardController">
     <div th:replace="fragments/header :: header"></div>
 
     <div class="container">
         <div class="row">
             <div class="col s8 offset-s2">
-                <div ng-if="errorMessage.enabled" class="card-panel deep-orange darken-1">
-                    <p class="white-text" ng-bind="errorMessage.message"></p>
+                <div ng-if="errorMessage.enabled" class="card-panel alert deep-orange darken-1">
+                    <p class="white-text center-align" ng-bind="errorMessage.message"></p>
+                    <a class="btn-floating waves-effect waves-light red lighten-1" ng-click="closeMsg()"><i class="material-icons">close</i></a>
                 </div>
             </div>
         </div>
